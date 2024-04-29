@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+    <!-- Generated automatically by AFRAME Exporter for Blender - https://silverslade.itch.io/a-frame-blender-exporter -->
+    <!-- MIT License: https://github.com/silverslade/aframe_blender_exporter/blob/master/LICENSE -->
+    <head>
+        <title>WebXR Application</title>
+        <link rel="icon" type="image/png" href="favicon.ico"/>
+        <meta name="description" content="3D Application">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+        <script type="text/javascript" src="js/webxr.js"></script>
+        <script type="text/javascript" src="js/joystick.js"></script>
+        <script type="text/javascript" src="js/camera-cube-env.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body onload="init();">
+        <a-scene   shadow="type: basic; autoUpdate: false;" renderer="antialias: false; colorManagement: false; physicallyCorrectLights: false;">
+            <!-- Assets -->
+            <a-assets>
+				<a-asset-item id="Cube" src="./assets/Cube.gltf"></a-asset-item>
+				<a-asset-item id="Cube.001" src="./assets/Cube.001.gltf"></a-asset-item>
+				<a-asset-item id="Cube.002" src="./assets/Cube.002.gltf"></a-asset-item>
+				<a-asset-item id="Cube.003" src="./assets/Cube.003.gltf"></a-asset-item>
+				<a-asset-item id="Cube.004" src="./assets/Cube.004.gltf"></a-asset-item>
+				<a-asset-item id="Cube.005" src="./assets/Cube.005.gltf"></a-asset-item>
+				<a-asset-item id="Cube.006" src="./assets/Cube.006.gltf"></a-asset-item>
+				<a-asset-item id="Cube.007" src="./assets/Cube.007.gltf"></a-asset-item>
+				<a-asset-item id="Cube.008" src="./assets/Cube.008.gltf"></a-asset-item>
+				<a-asset-item id="Куб.005" src="./assets/Куб.005.gltf"></a-asset-item>
+				<a-asset-item id="Цилиндр" src="./assets/Цилиндр.gltf"></a-asset-item>
+				<a-asset-item id="Цилиндр.001" src="./assets/Цилиндр.001.gltf"></a-asset-item>
+            </a-assets>
+
+            <!-- Entities -->
+            
+			<a-entity id="#Cube" gltf-model="#Cube"  scale="1 1 1" position="0.0 0.0 -0.0" visible="true" shadow="cast: false" material="transparent: true; opacity: 0.5"></a-entity>
+			<a-entity id="#Cube.001" gltf-model="#Cube.001"  scale="1 1 1" position="-1.0938303470611572 -0.9953855276107788 -1.0992997884750366" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Cube.002" gltf-model="#Cube.002"  scale="1 1 1" position="1.0938303470611572 -0.9953855276107788 -1.0992997884750366" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Cube.003" gltf-model="#Cube.003"  scale="1 1 1" position="1.0938303470611572 -0.9953855276107788 1.088361382484436" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Cube.004" gltf-model="#Cube.004"  scale="1 1 1" position="-1.0938303470611572 -0.9953855276107788 1.088361382484436" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Cube.005" gltf-model="#Cube.005"  scale="1 1 1" position="-1.0938303470611572 0.9899164438247681 -1.0992997884750366" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Cube.006" gltf-model="#Cube.006"  scale="1 1 1" position="1.0938303470611572 0.9899164438247681 -1.0992997884750366" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Cube.007" gltf-model="#Cube.007"  scale="1 1 1" position="1.0938303470611572 0.9899164438247681 1.088361382484436" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Cube.008" gltf-model="#Cube.008"  scale="1 1 1" position="-1.0938303470611572 0.9899164438247681 1.088361382484436" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Куб.005" gltf-model="#Куб.005"  scale="1 1 1" position="0.0 0.0 -0.0" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Цилиндр" gltf-model="#Цилиндр"  scale="1 1 1" position="1.0 -1.0 4.070170379906788e-19" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Цилиндр.001" gltf-model="#Цилиндр.001"  scale="1 1 1" position="-1.0 1.014627122392792e-33 -1.0" visible="true" shadow="cast: false" ></a-entity>
+
+            <!-- Camera -->
+            <a-entity id="player" 
+                position="0 -0.2 0" 
+                movement-controls="speed: 0.10000000149011612;">
+                <a-entity id="camera" 
+                    camera="near: 0.001" 
+                    position="0 1.7000000476837158 0" 
+                    look-controls="pointerLockEnabled: true">
+                        <a-entity id="cursor" cursor="fuse: false;" animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 50; from: 	0.1 0.1 0.1; to: 1 1 1"
+                            position="0 0 -0.1"
+                            geometry="primitive: circle; radius: 0.001;"
+                            material="color: #CCC; shader: flat;"
+                            >
+                        </a-entity>
+                </a-entity>
+                    <a-entity id="leftHand" oculus-touch-controls="hand: left" vive-controls="hand: left"></a-entity>
+					<a-entity id="rightHand" laser-controls oculus-touch-controls="hand: right" vive-controls="hand: right" ></a-entity>
+            </a-entity>
+
+            <!-- Lights -->
+            
+
+            <!-- Sky -->
+            <a-sky color="#ECECEC"></a-sky>
+        </a-scene>
+    </body>
+</html>
+<!-- Generated automatically by AFRAME Exporter for Blender - https://silverslade.itch.io/a-frame-blender-exporter -->
+<!-- MIT License: https://github.com/silverslade/aframe_blender_exporter/blob/master/LICENSE -->

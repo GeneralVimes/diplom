@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+    <!-- Generated automatically by AFRAME Exporter for Blender - https://silverslade.itch.io/a-frame-blender-exporter -->
+    <!-- MIT License: https://github.com/silverslade/aframe_blender_exporter/blob/master/LICENSE -->
+    <head>
+        <title>WebXR Application</title>
+        <link rel="icon" type="image/png" href="favicon.ico"/>
+        <meta name="description" content="3D Application">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+        <script type="text/javascript" src="js/webxr.js"></script>
+        <script type="text/javascript" src="js/joystick.js"></script>
+        <script type="text/javascript" src="js/camera-cube-env.js"></script>
+        <script src="aframe.140.min.js"></script>
+        <script src="aframe-extras.min.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="style.css">
+
+
+    
+    <script>
+	//універсальна функція зміни прозорості
+	function setOpacityOfGLTF(entity, opVal){
+		var model = entity.object3D;
+
+	  // Traverse the model's children to find materials and modify opacity
+	  model.traverse(function (node) {
+		if (node.isMesh) {
+		  // Check if the node is a mesh with a material
+		  var material = node.material;
+		  if (material) {
+			material.transparent = true; // Enable transparency
+			material.opacity = opVal; // Set the desired opacity value
+			material.needsUpdate = true; // Update the material
+		  }
+		}
+	  });
+
+		entity.setAttribute('material', {opacity: opVal});
+	}	
+	
+	
+      AFRAME.registerComponent("hideonclick", {
+        init: function() {
+			this.hasClicked = false;
+			this.el.addEventListener("click", function(e) {
+				//e - подія натискання
+				//e.target - AFrame об'єкт, на який натиснули
+				//e.target.object3D - 3D об'єкт, властивості якого ми хочемо змінити
+				if (!this.hasClicked){
+					setOpacityOfGLTF(e.target, 0.2)
+				}else{
+					setOpacityOfGLTF(e.target, 1)
+				}
+				this.hasClicked=!this.hasClicked;
+            });
+          }
+      });
+    </script>	
+	
+
+    </head>
+
+
+
+    <body onload="init();">
+        <a-scene   shadow="type: basic; autoUpdate: false;" renderer="antialias: false; colorManagement: false; physicallyCorrectLights: false;">
+            <!-- Assets -->
+            <a-assets>
+				<a-asset-item id="Cube" src="./assets/Cube.gltf"></a-asset-item>
+				<a-asset-item id="Конус" src="./assets/Конус.gltf"></a-asset-item>
+				<a-asset-item id="Конус.001" src="./assets/Конус.001.gltf"></a-asset-item>
+				<a-asset-item id="Куб.005" src="./assets/Куб.005.gltf"></a-asset-item>
+				<a-asset-item id="Окружность" src="./assets/Окружность.gltf"></a-asset-item>
+				<a-asset-item id="Сфера" src="./assets/Сфера.gltf"></a-asset-item>
+            </a-assets>
+
+            
+            <!-- Щоб працював тач -->
+		    <a-entity cursor="rayOrigin:mouse"></a-entity>
+		    <a-entity position="0 -1 -2">
+
+            <!-- Entities -->
+			<a-entity id="#Cube" hideonclick gltf-model="#Cube"  scale="1 1 1" position="2.5327868461608887 1.4932101964950562 -2.0062599048742413e-07" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Конус" hideonclick gltf-model="#Конус"  scale="1 1 1" position="0.047254085540771484 1.0110883712768555 -2.3618007105596917e-07" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Конус.001" gltf-model="#Конус.001"  scale="1 1 1" position="0.047254111617803574 1.2375836372375488 -2.416697384433064e-07" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Куб.005"  gltf-model="#Куб.005"  scale="1 1 1" position="2.5327868461608887 1.4932101964950562 -2.0062599048742413e-07" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Окружность" gltf-model="#Окружность"  scale="1 1 1" position="-2.428830862045288 1.644422173500061 2.0604150563485746e-07" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Сфера" hideonclick gltf-model="#Сфера"  scale="1 1 1" position="-2.428830862045288 1.644422173500061 2.0138536171998567e-07" visible="true" shadow="cast: false" ></a-entity>
+
+            <!-- Camera -->
+            <a-entity id="player" 
+                position="0 -0.2 0" 
+                movement-controls="speed: 0.10000000149011612;">
+                <a-entity id="camera" 
+                    camera="near: 0.001" 
+                    position="0 1.7000000476837158 0" 
+                    look-controls="pointerLockEnabled: true">
+                        <a-entity id="cursor" cursor="fuse: false;" animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 50; from: 	0.1 0.1 0.1; to: 1 1 1"
+                            position="0 0 -0.1"
+                            geometry="primitive: circle; radius: 0.001;"
+                            material="color: #CCC; shader: flat;"
+                            >
+                        </a-entity>
+                </a-entity>
+            </a-entity>
+            <a-sky color="#ECECEC"></a-sky>
+        </a-scene>
+    </body>
+</html>
+<!-- Generated automatically by AFRAME Exporter for Blender - https://silverslade.itch.io/a-frame-blender-exporter -->
+<!-- MIT License: https://github.com/silverslade/aframe_blender_exporter/blob/master/LICENSE -->
